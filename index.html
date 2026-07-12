@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RYSLAOV SHOP</title>
+<style>
+:root{
+--bg:#f8f9fa;--card:#fff;--text:#1a1a2e;--sub:#6c757d;--green:#00a86b;--green-h:#008f5a;--border:#e9ecef;--shadow:0 2px 16px rgba(0,0,0,0.04);--radius:16px;--radius-sm:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif;min-height:100vh;line-height:1.5}
+a{color:var(--green);text-decoration:none}a:hover{text-decoration:underline}
+.hdr{background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.hdr-logo{font-size:20px;font-weight:800;letter-spacing:-0.5px;color:#111}.hdr-logo span{color:var(--green)}
+.hdr-right{display:flex;align-items:center;gap:12px;font-size:13px}
+.hdr-bal{font-size:12px;color:var(--sub)}.hdr-bal b{color:var(--green);font-size:14px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--green);color:#fff;font-weight:600;font-size:13px;border-radius:50px;transition:all 0.2s;border:none;cursor:pointer;letter-spacing:0.2px;white-space:nowrap}
+.btn:hover{background:var(--green-h);box-shadow:0 4px 16px rgba(0,168,107,0.25);transform:translateY(-1px);text-decoration:none}
+.btn-o{background:#fff;color:var(--green);border:1.5px solid var(--green)}.btn-o:hover{background:#f0fdf6}
+.btn-s{padding:6px 14px;font-size:11px;border-radius:40px}
+.btn-d{background:#1a1a2e;color:#fff}.btn-d:hover{background:#000}
+.btn-r{background:#e74c3c;color:#fff}.btn-r:hover{background:#c0392b}
+.main{max-width:1200px;margin:0 auto;padding:24px 20px}
+.hero{text-align:center;padding:30px 20px 20px}
+.hero-title{font-size:36px;font-weight:800;letter-spacing:-1px;margin-bottom:4px}.hero-title span{color:var(--green)}
+.hero-sub{font-size:15px;color:var(--sub)}
+.ann{background:linear-gradient(135deg,#f0fdf6,#e8f8f0);border:1px solid #c8f0d8;border-radius:var(--radius-sm);padding:10px 20px;text-align:center;font-size:12px;color:#2d6a4f;margin-bottom:24px;font-weight:500}
+.sec-title{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;color:var(--green);letter-spacing:4px;text-transform:uppercase;margin:28px 0 14px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.g2{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.g4{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.pcard{background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all 0.25s;display:flex;flex-direction:column}
+.pcard:hover{border-color:var(--green);box-shadow:var(--shadow);transform:translateY(-2px)}
+.pcard-img{width:100%;height:180px;object-fit:cover;background:#f0f0f0}
+.pcard-body{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column}
+.pcard-cat{font-size:10px;color:var(--green);letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:4px}
+.pcard-name{font-size:17px;font-weight:700;color:#111;margin-bottom:4px;line-height:1.3}
+.pcard-desc{font-size:12px;color:var(--sub);margin-bottom:10px;line-height:1.5;flex:1}
+.pcard-price{font-size:20px;font-weight:800;color:var(--green);margin-bottom:10px}
+.pcard-actions{display:flex;gap:8px}
+.card{background:var(--card);border-radius:var(--radius);padding:20px;border:1px solid var(--border);margin-bottom:12px;transition:all 0.2s}
+.card:hover{border-color:var(--green);box-shadow:var(--shadow)}
+.prod-hero{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin:20px 0}
+@media(max-width:768px){.prod-hero{grid-template-columns:1fr}}
+.prod-img{border-radius:var(--radius);width:100%;height:350px;object-fit:cover;background:#f0f0f0}
+.prod-info{display:flex;flex-direction:column;justify-content:center}
+.prod-cat{font-size:10px;color:var(--green);letter-spacing:4px;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.prod-name{font-size:30px;font-weight:800;margin-bottom:8px;line-height:1.2}
+.prod-desc{font-size:14px;color:var(--sub);line-height:1.7;margin-bottom:16px}
+.prod-pb{background:#f9fdfb;border:1px solid #d0f0e0;border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:16px}
+.prod-pl{font-size:10px;color:var(--green);letter-spacing:3px;text-transform:uppercase;font-weight:600}
+.prod-pv{font-size:36px;font-weight:800;color:#111;margin:4px 0}
+.prod-pu{font-size:14px;color:var(--sub)}
+.wb{background:#fafafa;border:1px solid #e0e0e0;padding:12px 16px;border-radius:var(--radius-sm);font-family:monospace;font-size:12px;word-break:break-all;color:#444;user-select:all}
+.wn{font-size:10px;color:var(--sub);margin-bottom:4px;letter-spacing:1px}
+.inp{width:100%;padding:10px 14px;background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;outline:none;transition:0.2s;margin:5px 0}
+.inp:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,168,107,0.08)}
+.inp-s{padding:8px 12px;font-size:12px;width:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
+th{color:var(--sub);font-size:9px;text-transform:uppercase;letter-spacing:2px;font-weight:700}
+td{font-size:12px;color:#444}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:600}
+.bg-y{background:#fff8e1;color:#e67e22}.bg-g{background:#e8f5e9;color:#27ae60}.bg-r{background:#fdecea;color:#e74c3c}
+.stat-card{text-align:center;padding:20px}.stat-val{font-size:28px;font-weight:800}.stat-val.green{color:var(--green)}.stat-lbl{font-size:10px;color:var(--sub);letter-spacing:1px;margin-top:2px}
+footer{text-align:center;padding:24px;color:#aaa;font-size:11px;border-top:1px solid var(--border);margin-top:40px}footer a{color:#999;margin:0 6px}
+.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:var(--radius);padding:28px;z-index:101;display:none;max-width:440px;width:90%;box-shadow:0 24px 80px rgba(0,0,0,0.12)}
+.modal.on{display:block}
+.over{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.35);z-index:100;display:none}
+.over.on{display:block}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}.fg{flex:1}
+.auth-page{max-width:400px;margin:60px auto;padding:20px}
+.auth-card{background:var(--card);border-radius:var(--radius);padding:30px;border:1px solid var(--border);box-shadow:var(--shadow)}
+.auth-logo{text-align:center;font-size:28px;font-weight:800;margin-bottom:4px}.auth-logo span{color:var(--green)}
+.auth-sub{text-align:center;font-size:12px;color:var(--sub);margin-bottom:20px}
+.auth-link{text-align:center;margin-top:14px;font-size:12px}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:8px}
+.cart-item-info h4{font-size:14px;margin-bottom:2px}.cart-item-info span{font-size:12px;color:var(--sub)}
+.code-block{background:#1a1a2e;color:#0f0;padding:12px 16px;border-radius:var(--radius-sm);font-family:monospace;font-size:11px;max-height:250px;overflow-y:auto;line-height:1.8;word-break:break-all}
+.side{position:fixed;top:0;right:-320px;width:300px;height:100%;background:#fff;z-index:102;transition:.3s;box-shadow:-5px 0 30px rgba(0,0,0,.1);padding:24px;overflow-y:auto}
+.side.open{right:0}
+.sclose{color:#999;font-size:22px;cursor:pointer;float:right;border:none;background:none;line-height:1}
+.smenu{font-size:12px;font-weight:700;color:var(--green);letter-spacing:2px;margin:20px 0 8px;text-transform:uppercase}
+.sitem{display:block;padding:10px 0;color:#444;text-decoration:none;font-size:14px;border-bottom:1px solid #f0f0f0;transition:.2s}
+.sitem:hover{color:var(--green)}
+.mbtn{background:#fff;color:#333;border:1px solid #ddd;padding:8px 16px;cursor:pointer;font-size:13px;border-radius:20px;transition:.2s}
+.mbtn:hover{background:#f0f0f0}
+</style>
+</head>
+<body>
+
+<div class="over" id="over" onclick="closeMenu()"></div>
+<div class="side" id="side">
+<button class="sclose" onclick="closeMenu()">&times;</button>
+<div style="font-size:18px;font-weight:800;color:#111;margin-bottom:10px;">Меню</div>
+<a href="#" class="sitem" onclick="closeMenu();renderAll()">🏠 Главная</a>
+<a href="#cart-sec" class="sitem" onclick="closeMenu();scrollToCart()">🛒 Корзина</a>
+<a href="#profile-sec" class="sitem" onclick="closeMenu();showProfile()">👤 Кабинет</a>
+<div class="smenu">Вход</div>
+<input class="inp" id="loginUser" placeholder="Логин" style="margin:4px 0;">
+<input class="inp" id="loginPass" type="password" placeholder="Пароль" style="margin:4px 0;">
+<button class="btn" style="width:100%;margin-top:4px;" onclick="doLogin()">Войти</button>
+<button class="btn btn-o" style="width:100%;margin-top:4px;" onclick="doRegister()">Регистрация</button>
+<div class="smenu">Админ</div>
+<input class="inp" id="adminCode" placeholder="Код доступа" style="margin:4px 0;">
+<button class="btn btn-d" style="width:100%;margin-top:4px;" onclick="adminLogin()">Войти</button>
+</div>
+
+<div class="modal" id="adminMod">
+<button class="sclose" onclick="closeAdmin()" style="float:right;">&times;</button>
+<div style="font-size:17px;font-weight:700;margin-bottom:14px;">⚙ Админ-панель</div>
+<div style="font-size:10px;color:var(--green);letter-spacing:3px;font-weight:600;margin:16px 0 8px;">ТАБЛО СООБЩЕНИЙ</div>
+<div class="row" style="margin-bottom:8px;"><input class="inp fg" id="msgInput" placeholder="Текст сообщения..."><button class="btn btn-s" onclick="addMessage()">Добавить</button></div>
+<div id="msgList"></div>
+<div style="font-size:10px;color:var(--green);letter-spacing:3px;font-weight:600;margin:16px 0 8px;">ДОБАВИТЬ ТОВАР</div>
+<div class="row" style="margin-bottom:4px;"><input class="inp inp-s" id="prodCat" placeholder="Категория" style="width:100px;"><input class="inp inp-s fg" id="prodName" placeholder="Название"></div>
+<div class="row"><input class="inp inp-s" id="prodPrice" placeholder="Цена" type="number" style="width:80px;"><input class="inp inp-s fg" id="prodDesc" placeholder="Описание"><input class="inp inp-s" id="prodImg" placeholder="URL картинки" style="width:140px;"></div>
+<button class="btn btn-s" style="margin-top:6px;" onclick="addProduct()">Добавить товар</button>
+<div style="font-size:10px;color:var(--green);letter-spacing:3px;font-weight:600;margin:16px 0 8px;">ПРОМОКОДЫ</div>
+<div class="row"><input class="inp inp-s" id="promoCode" placeholder="Код" style="width:100px;"><input class="inp inp-s" id="promoDisc" placeholder="Скидка %" type="number" style="width:80px;"><input class="inp inp-s" id="promoMax" placeholder="Лимит" type="number" value="0" style="width:70px;"><button class="btn btn-s" onclick="addPromo()">Добавить</button></div>
+<div id="promoList" style="margin-top:8px;font-size:11px;"></div>
+<div style="font-size:10px;color:var(--green);letter-spacing:3px;font-weight:600;margin:16px 0 8px;">СТАТИСТИКА</div>
+<div class="g4"><div class="card stat-card"><div class="stat-val green" id="statOnline">0</div><div class="stat-lbl">Онлайн</div></div><div class="card stat-card"><div class="stat-val" id="statOrders">0</div><div class="stat-lbl">Заказов</div></div><div class="card stat-card"><div class="stat-val" id="statUsers">0</div><div class="stat-lbl">Пользователей</div></div><div class="card stat-card"><div class="stat-val green" id="statRevenue">0</div><div class="stat-lbl">USDT</div></div></div>
+<div style="font-size:10px;color:var(--green);letter-spacing:3px;font-weight:600;margin:16px 0 8px;">ЗАКАЗЫ</div>
+<div id="adminOrders" style="font-size:11px;"></div>
+<div style="font-size:10px;color:var(--green);letter-spacing:3px;font-weight:600;margin:16px 0 8px;">БАЗА ПОЛЬЗОВАТЕЛЕЙ</div>
+<div class="code-block" id="userBase"></div>
+<div style="font-size:10px;color:var(--green);letter-spacing:3px;font-weight:600;margin:16px 0 8px;">СМЕНА ПАРОЛЯ АДМИНА</div>
+<div class="row"><input class="inp fg" id="newAdminPw" placeholder="Новый пароль"><button class="btn btn-s" onclick="changeAdminPw()">Сменить</button></div>
+</div>
+
+<div class="hdr">
+<div class="hdr-logo">RYSLAOV <span>SHOP</span></div>
+<div class="hdr-right">
+<span class="hdr-bal">Баланс: <b id="balDisplay">0.00</b> USDT</span>
+<span id="headerBtns">
+<a href="#" class="btn btn-s" onclick="showLogin()">Войти</a>
+<a href="#" class="btn btn-o btn-s" onclick="showRegister()">Регистрация</a>
+</span>
+</div>
+</div>
+
+<div class="main">
+<div class="hero"><div class="hero-title">RYSLAOV <span>SHOP</span></div><div class="hero-sub">Цифровые товары и услуги · Оплата USDT · Мгновенная доставка</div></div>
+<div class="ann" id="annBar">Добро пожаловать! · Онлайн: 1</div>
+<div id="catalog"></div>
+<div id="cart-sec"></div>
+<div id="profile-sec"></div>
+</div>
+
+<footer>© 2026 RYSLAOV SHOP · <a href="https://t.me/ryslyaovgpt">Поддержка</a> · Все права защищены</footer>
+
+<script>
+var WALLET="TQKHFRD7FGgHmXSogDPiZ9Mc6CdHHLbUUL";
+var ADMIN_CODE="74522i2sO4Eq0";
+var DP=[{id:1,cat:"Нейросети",name:"AI-изображения (50 шт)",price:1500,desc:"Midjourney/Stable Diffusion",img:"https://picsum.photos/seed/ai1/400/300",av:true},{id:2,cat:"Нейросети",name:"Голосовой AI-клон",price:5000,desc:"Озвучка вашим голосом",img:"https://picsum.photos/seed/ai2/400/300",av:true},{id:3,cat:"Нейросети",name:"AI-аватар",price:2000,desc:"Говорящий аватар",img:"https://picsum.photos/seed/ai3/400/300",av:true},{id:4,cat:"Доступы",name:"ChatGPT Plus",price:800,desc:"GPT-4 на 30 дней",img:"https://picsum.photos/seed/gpt/400/300",av:true},{id:5,cat:"Доступы",name:"Netflix Premium",price:400,desc:"4K, 4 устройства",img:"https://picsum.photos/seed/netflix/400/300",av:true},{id:6,cat:"Дизайн",name:"Оформление TG-канала",price:3000,desc:"Аватар, баннер",img:"https://picsum.photos/seed/design1/400/300",av:true},{id:7,cat:"Дизайн",name:"Шапка YouTube",price:1500,desc:"Баннер, PSD",img:"https://picsum.photos/seed/design2/400/300",av:true},{id:8,cat:"Озвучка",name:"Озвучка 1 мин",price:500,desc:"Чистый звук",img:"https://picsum.photos/seed/voice/400/300",av:true},{id:9,cat:"Тексты",name:"SEO-статья",price:1500,desc:"5000 знаков",img:"https://picsum.photos/seed/text/400/300",av:true},{id:10,cat:"Видео",name:"Reels/Shorts",price:1000,desc:"До 60 сек",img:"https://picsum.photos/seed/video/400/300",av:true},{id:11,cat:"Боты",name:"Telegram-бот",price:5000,desc:"Под ключ",img:"https://picsum.photos/seed/bot/400/300",av:true},{id:12,cat:"Реклама",name:"Таргет ВК",price:5000,desc:"Анализ ЦА",img:"https://picsum.photos/seed/ads/400/300",av:true},{id:13,cat:"Товары",name:"Гайд TG",price:500,desc:"PDF 50 стр",img:"https://picsum.photos/seed/guide/400/300",av:true},{id:14,cat:"Товары",name:"Пресеты LR (20)",price:800,desc:"Киберпанк, неон",img:"https://picsum.photos/seed/presets/400/300",av:true},{id:15,cat:"Услуги",name:"Консультация",price:3000,desc:"AI, TG, дизайн",img:"https://picsum.photos/seed/consult/400/300",av:true}];
+function LS(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function SS(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var P=LS('rs_P',DP),U=LS('rs_U',{}),O=LS('rs_O',[]),M=LS('rs_M',['⚡ Добро пожаловать в RYSLAOV SHOP!']),PC=LS('rs_PC',[]),CU=LS('rs_CU',null),CA=LS('rs_CA',[]),IA=LS('rs_IA',false),AP=LS('rs_AP',ADMIN_CODE),NI=P.length+1;
+function SV(){SS('rs_P',P);SS('rs_U',U);SS('rs_O',O);SS('rs_M',M);SS('rs_PC',PC);SS('rs_CA',CA);SS('rs_CU',CU);SS('rs_IA',IA);SS('rs_AP',AP)}
+function GB(){return CU&&U[CU]?U[CU].bal||0:0}
+function UI(){RA();SV()}
+function RA(){var C={};P.filter(p=>p.av).forEach(p=>{if(!C[p.cat])C[p.cat]=[];C[p.cat].push(p)});var h='';for(var c in C){h+='<div class="sec-title">'+c+'</div><div class="g2">';C[c].forEach(p=>{var i=p.img||'https://picsum.photos/seed/'+p.id+'/400/300';h+='<div class="pcard"><img src="'+i+'" class="pcard-img"><div class="pcard-body"><div class="pcard-cat">'+p.cat+'</div><div class="pcard-name">'+p.name+'</div><div class="pcard-desc">'+p.desc+'</div><div class="pcard-price">'+p.price.toLocaleString()+' ₽</div><div class="pcard-actions"><a href="#" class="btn btn-s" onclick="SP('+p.id+')">Подробнее</a><a href="#" class="btn btn-o btn-s" onclick="AC('+p.id+')">В корзину</a></div></div></div>'});h+='</div>'}document.getElementById('catalog').innerHTML=h;document.getElementById('cart-sec').innerHTML=RC();document.getElementById('profile-sec').innerHTML=CU?RP():'';document.getElementById('annBar').innerHTML=M.slice(-3).join(' · ')+' · Онлайн: '+Math.floor(Math.random()*10+1);document.getElementById('balDisplay').innerText=GB().toFixed(2);if(CU)document.getElementById('headerBtns').innerHTML='<a href="#" class="btn btn-o btn-s" onclick="SPR()">👤 Кабинет</a><a href="#" class="btn btn-s" onclick="SCT()">🛒 Корзина ('+CA.length+')</a><a href="#" class="btn btn-d btn-s" onclick="LO()">Выйти</a>'}
+function SP(id){var p=P.find(x=>x.id===id);if(!p)return;var u=(p.price/90).toFixed(2),i=p.img||'https://picsum.photos/seed/'+id+'/600/450';document.getElementById('catalog').innerHTML='<a href="#" onclick="RA()" style="font-size:12px;">← Назад</a><div class="prod-hero"><img src="'+i+'" class="prod-img"><div class="prod-info"><div class="prod-cat">'+p.cat+'</div><div class="prod-name">'+p.name+'</div><div class="prod-desc">'+p.desc+'</div><div class="prod-pb"><div class="prod-pl">Стоимость</div><div class="prod-pv">'+p.price.toLocaleString()+' ₽</div><div class="prod-pu">≈ '+u+' USDT</div></div><div class="card"><div style="font-weight:700;">💳 Оплата USDT (TRC20)</div><div class="wn">Отправьте '+u+' USDT:</div><div class="wb">'+WALLET+'</div>'+(CU?'<div style="margin-top:8px;"><input class="inp" id="txHash" placeholder="Хеш транзакции"><input class="inp inp-s" id="promoInput" placeholder="Промокод" style="width:150px;"><button class="btn" style="margin-top:6px;" onclick="CO('+p.id+')">Я оплатил</button></div>':'<a href="#" class="btn" style="margin-top:8px;" onclick="SL()">Войдите для оплаты</a>')+'</div></div></div>';document.getElementById('cart-sec').innerHTML='';document.getElementById('profile-sec').innerHTML=''}
+function AC(id){if(!CA.find(x=>x.id===id)){var p=P.find(x=>x.id===id);if(p)CA.push({id:p.id,name:p.name,price:p.price})}UI();alert('Добавлено!')}
+function RC(){var h='<div class="sec-title">Корзина</div>';if(!CA.length){h+='<div class="card" style="text-align:center;padding:30px;">🛒 Пусто</div>';return h}var t=0;CA.forEach(c=>{h+='<div class="cart-item"><div><h4>'+c.name+'</h4><span>'+c.price.toLocaleString()+' ₽</span></div><a href="#" class="btn btn-r btn-s" onclick="RFC('+c.id+')">×</a></div>';t+=c.price});var u=(t/90).toFixed(2);h+='<div style="margin-top:12px;font-weight:700;">Итого: '+t.toLocaleString()+' ₽ ≈ '+u+' USDT</div>';if(CU)h+='<div class="card" style="margin-top:10px;"><div style="font-weight:700;">💳 Оплата</div><div class="wb" style="margin:8px 0;">'+WALLET+'</div><div>'+u+' USDT</div><input class="inp" id="cartTx" placeholder="Хеш"><input class="inp inp-s" id="cartPromo" placeholder="Промокод" style="width:150px;"><button class="btn" style="margin-top:6px;" onclick="CCO()">Я оплатил</button></div>';return h}
+function RFC(id){CA=CA.filter(x=>x.id!==id);UI()}
+function SCT(){RA();document.getElementById('cart-sec').scrollIntoView({behavior:'smooth'})}
+function CO(pid){var tx=document.getElementById('txHash')?.value||'',pr=document.getElementById('promoInput')?.value?.trim()?.toUpperCase()||'',p=P.find(x=>x.id===pid);if(!p)return;var u=+(p.price/90).toFixed(2),d=0;if(pr){var pc=PC.find(x=>x.code===pr&&x.active);if(pc&&(pc.maxU===0||pc.used<pc.maxU)){d=pc.disc;pc.used++;u=+(u*(1-d/100)).toFixed(2)}}O.push({id:O.length+1,num:'RYS-'+Date.now()+'-'+Math.random().toString(36).substr(2,3).toUpperCase(),user:CU,items:[{id:p.id,name:p.name,price:p.price}],amount:u,discount:d,promo:pr,tx:tx,status:'pending',date:new Date().toISOString().slice(0,10)});UI();alert('Заказ #'+O[O.length-1].num+' создан!')}
+function CCO(){if(!CA.length)return;var tx=document.getElementById('cartTx')?.value||'',pr=document.getElementById('cartPromo')?.value?.trim()?.toUpperCase()||'',t=CA.reduce((s,c)=>s+c.price,0),u=+(t/90).toFixed(2),d=0;if(pr){var pc=PC.find(x=>x.code===pr&&x.active);if(pc&&(pc.maxU===0||pc.used<pc.maxU)){d=pc.disc;pc.used++;u=+(u*(1-d/100)).toFixed(2)}}O.push({id:O.length+1,num:'RYS-'+Date.now()+'-'+Math.random().toString(36).substr(2,3).toUpperCase(),user:CU,items:[...CA],amount:u,discount:d,promo:pr,tx:tx,status:'pending',date:new Date().toISOString().slice(0,10)});CA=[];UI();alert('Заказ создан!')}
+function RP(){if(!CU)return'';var b=GB().toFixed(2),mo=O.filter(o=>o.user===CU),h='<div class="sec-title">Личный кабинет</div><div class="g2"><div class="card"><div style="color:var(--sub);font-size:11px;">ЛОГИН</div><div style="font-size:20px;font-weight:700;">'+CU+'</div></div><div class="card"><div style="color:var(--sub);font-size:11px;">БАЛАНС</div><div style="font-size:28px;font-weight:800;color:var(--green);">'+b+' USDT</div></div></div><div class="sec-title">Мои заказы</div>';if(!mo.length)h+='<div class="card" style="text-align:center;padding:30px;">Нет заказов</div>';else{h+='<table><tr><th>Номер</th><th>Сумма</th><th>Скидка</th><th>Статус</th><th>Дата</th></tr>';mo.reverse().forEach(o=>{var bg=o.status==='done'?'bg-g':(o.status==='pending'?'bg-y':'bg-r');h+='<tr><td style="font-family:monospace;font-size:11px;">'+o.num+'</td><td>'+o.amount+' USDT</td><td>'+o.discount+'%</td><td><span class="badge '+bg+'">'+o.status+'</span></td><td>'+o.date+'</td></tr>'});h+='</table>'}return h}
+function SPR(){RA();document.getElementById('profile-sec').scrollIntoView({behavior:'smooth'})}
+function SL(){document.getElementById('side').classList.add('open');document.getElementById('over').classList.add('on')}
+function CM(){document.getElementById('side').classList.remove('open');document.getElementById('over').classList.remove('on')}
+function DL(){var u=document.getElementById('loginUser').value.trim(),p=document.getElementById('loginPass').value;if(!u||!p)return alert('Введите данные');if(!U[u])U[u]={pw:p,bal:0};if(U[u].pw!==p)return alert('Неверный пароль');CU=u;IA=(u==='admin'&&p===AP);CM();UI()}
+function DR(){var u=document.getElementById('loginUser').value.trim(),p=document.getElementById('loginPass').value;if(!u||!p||u.length<3||p.length<3)return alert('Минимум 3 символа');if(U[u])return alert('Логин занят');U[u]={pw:p,bal:0};CU=u;CM();UI()}
+function LO(){CU=null;IA=false;UI()}
+function AL(){if(document.getElementById('adminCode').value.trim()!==AP)return alert('Неверный код');IA=true;CU='admin';if(!U['admin'])U['admin']={pw:AP,bal:0};document.getElementById('adminMod').classList.add('on');document.getElementById('over').classList.add('on');CM();RAD();UI()}
+function CAX(){document.getElementById('adminMod').classList.remove('on');document.getElementById('over').classList.remove('on')}
+function RAD(){document.getElementById('msgList').innerHTML=M.map((m,i)=>'<div class="row" style="padding:4px 0;border-bottom:1px solid #eee;font-size:11px;"><span>'+m+'</span><a href="#" class="btn btn-r btn-s" onclick="DM('+i+')">×</a></div>').join('');document.getElementById('promoList').innerHTML=PC.map(pc=>'<div class="row" style="font-size:11px;"><span>'+pc.code+' - '+pc.disc+'% ('+pc.used+'/'+(pc.maxU||'∞')+') '+(pc.active?'✅':'❌')+'</span><a href="#" class="btn btn-o btn-s" onclick="TP(\''+pc.code+'\')">'+(pc.active?'Откл':'Вкл')+'</a></div>').join('');document.getElementById('statOrders').innerText=O.length;document.getElementById('statUsers').innerText=Object.keys(U).length;document.getElementById('statRevenue').innerText=O.filter(o=>o.status==='done').reduce((s,o)=>s+o.amount,0).toFixed(2);document.getElementById('statOnline').innerText=Math.floor(Math.random()*5+1);document.getElementById('adminOrders').innerHTML='<table><tr><th>Номер</th><th>Польз</th><th>Сумма</th><th>Статус</th></tr>'+O.map(o=>'<tr><td>'+o.num+'</td><td>'+o.user+'</td><td>'+o.amount+' USDT</td><td>'+o.status+'</td></tr>').join('')+'</table>';document.getElementById('userBase').innerHTML=Object.entries(U).map(([u,d])=>u+':'+d.pw+' — '+d.bal+' USDT').join('<br>')}
+function AM(){var t=document.getElementById('msgInput').value.trim();if(t){M.push(t);RAD();UI()}}
+function DM(i){M.splice(i,1);RAD();UI()}
+function APD(){var c=document.getElementById('prodCat').value.trim(),n=document.getElementById('prodName').value.trim(),p=parseFloat(document.getElementById('prodPrice').value),d=document.getElementById('prodDesc').value.trim(),i=document.getElementById('prodImg').value.trim();if(!c||!n||!p)return alert('Заполните поля');P.push({id:NI++,cat:c,name:n,price:p,desc:d,img:i,av:true});RAD();UI()}
+function APC(){var c=document.getElementById('promoCode').value.trim().toUpperCase(),d=parseInt(document.getElementById('promoDisc').value),m=parseInt(document.getElementById('promoMax').value)||0;if(!c||!d||d<1||d>100)return alert('Неверные данные');PC.push({code:c,disc:d,maxU:m,used:0,active:true});RAD();UI()}
+function TP(code){var p=PC.find(x=>x.code===code);if(p){p.active=!p.active;RAD();UI()}}
+function CAP(){var np=document.getElementById('newAdminPw').value.trim();if(!np||np.length<3)return alert('Минимум 3 символа');AP=np;if(U['admin'])U['admin'].pw=np;RAD();UI();alert('Пароль изменён!')}
+RA();
+setInterval(SV,5000);
+</script>
+</body>
+</html>
